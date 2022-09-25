@@ -17,4 +17,16 @@ public class Ball : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter(Collision otherObject) 
+    {
+        if(otherObject.gameObject.tag == "GameOver")
+        {
+            Destroy(this.gameObject);
+        }
+        else if(otherObject.gameObject.tag == "BlocoPoint")
+        {
+            Destroy(otherObject.gameObject);
+        }
+    }
 }

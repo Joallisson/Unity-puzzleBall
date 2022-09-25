@@ -9,13 +9,13 @@ public class Plataforma : MonoBehaviour
     public int maxDistancia, minDistacia;
     void Start()
     {
-        SetMinAndMaxX(); 
+        //SetMinAndMaxX(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        MovePlataforma();
     }
 
     private void SetMinAndMaxX(){
@@ -28,5 +28,14 @@ public class Plataforma : MonoBehaviour
      private void VerificarMaxEMinDistacia()
     {
         
+    }
+
+    private void MovePlataforma()
+    {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) //se existir algum toque na tela e verifica se o tipo de toque na tela é do tipo movimento
+        {
+            Vector2 touchPosition = Input.GetTouch(0).deltaPosition;  //pegando as coordenadados do meu dedo na tela
+            transform.Translate(touchPosition.x * speed * Time.deltaTime, 0f, 0f); //move a plataforma na horizontal com meu dedo
+        }
     }
 }
